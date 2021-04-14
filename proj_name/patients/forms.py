@@ -22,5 +22,6 @@ class PatientSignUpForm(UserCreationForm):
         patient.p_name = self.cleaned_data.get('p_name')
         patient.p_dob = self.cleaned_data.get('p_dob')
         patient.p_phone = self.cleaned_data.get('p_phone')
+        patient.save()
         return user
           
