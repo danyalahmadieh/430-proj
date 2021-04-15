@@ -1,0 +1,43 @@
+<!doctype html>
+<html><head></head>
+<style> 		
+tr:nth-child(odd) { background-color : white; }		
+tr:nth-child(even) { background-color : white; }		
+tr:hover { background-color : lightgreen; }
+body{background-image: url("https://wallpaper.dog/large/854206.jpg");
+background-repeat: no-repeat;
+background-attachment: fixed;
+background-size: cover;
+font-size: 20px;} 
+</style>
+   <body>
+   <h1 style="color:white">Book an Appointment</h1>
+      <table border=15 cellpadding=15 cellspacing=10>
+         <thead>
+            <td>Name</td>
+            <td>Years of Experience</td>
+	    <td>Email</td>
+	    <td>Specialty</td>
+	    <td>Availabilty</td>
+	    <td>Starting Hours</td>
+	    <td>Ending Hours</td>
+
+         </thead>
+         {% csrf_token %}
+         {% for doctor in all_doctors %}
+            <tr>
+
+               <td>{{ doctor.d_name }}</td>
+	       <td>{{ doctor.d_yoe }}</td>
+	       <td>{{ doctor.d_email }}</td>
+		<td>{{ doctor.d_specialty }}</td>
+		<td>{{ doctor.d_availability }}</td>
+		<td>{{ doctor.d_starthours }}</td>
+		<td>{{ doctor.d_endhours }}</td>
+
+            </tr>
+         {% endfor %}
+      </table>
+<button onclick="history.go(-1)">Back</button>
+   </body>
+</html>

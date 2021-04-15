@@ -1,9 +1,25 @@
-<!doctype html>
-<html><head></head>
-   <body>
-{% csrf_token %}
-   <h1>HOME</h1>
-<a class="ml-2" href="{% url 'signup' %}">Sign Up</a>
-<a class="ml-2" href="{% url 'login' %}">Log In</a>
-</body>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title style="color:white">HOMEPAGE</title>
+  </head>
+  <body>
+    {% csrf_token %}
+    <h1>HOMEPAGE</h1>
+    <b><a class="ml-2" href="{% url 'signup' %}">Sign Up</a></b>
+<br></br>
+    <b><a class="ml-2" href="{% url 'login' %}">Log In</a></b>
+    <style>
+      body {
+        background-image: url("https://www.uniper.energy/sites/default/files/gif%20home_reduced.gif");
+        background-color: #cccccc;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+	color:white;
+	font-size: 30px;  
+
+      }
+    </style>
+  </body>
 </html>

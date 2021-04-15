@@ -1,19 +1,49 @@
-{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title style="color:white">Login Page</title>
+  </head>
+  <body>
+    {% block content %}
+
+    <h1 style="color:white">Login Page</h1>
     <div class="content-section">
-        <form method="POST">
-            {% csrf_token %}
-            <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Log In</legend>
-                {{ form }}
-            </fieldset>
-            <div class="form-group">
-                <button class="btn btn-outline-info" type="submit">Login</button>
-            </div>
-        </form>
-        <div class="border-top pt-3">
-            <small class="text-muted">
-                Need An Account? <a class="ml-2" href="{% url 'signup' %}">Sign Up Now</a>
-            </small>
+      <form method="POST">
+        <style>
+          label {
+            display: inline-block;
+            width: 110px;
+          }
+   body {
+        background-image: url("https://wallpaper.dog/large/854206.jpg");
+        background-color: #cccccc;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+	color: white;
+	font-size: 20px;  
+
+      }
+        </style>
+        <fieldset class="form-group">
+                <legend class="border-bottom mb-4" style = "color:white">Log In</legend>
+                {% csrf_token %}
+		{{ form }}
+        <div class="form-group">
+          <br />
+          <button class="btn btn-outline-info" type="submit">Login</button>
+          <button onclick="history.go(-1)">Back</button>
         </div>
+      </form>
+      <div class="border-top pt-3">
+	<p></p>
+        <small class="text-muted" style="color:white">
+          Don't have An Account? <a class="ml-2" href="{% url 'signup' %}"><b> Sign up now</b></a>
+        </small>
+      </div>
     </div>
-{% endblock content %}
+    {% endblock content %}
+  </body>
+</html>
