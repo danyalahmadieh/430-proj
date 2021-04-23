@@ -8,12 +8,14 @@ body{background-image: url("https://wallpaper.dog/large/854206.jpg");
 background-repeat: no-repeat;
 background-attachment: fixed;
 background-size: cover;
-font-size: 20px;} 
+font-size: 20px;
+font-color:white;} 
 </style>
    <body>
    <h1 style="color:white">Book an Appointment</h1>
       <table border=15 cellpadding=15 cellspacing=10>
          <thead>
+	    
             <td>Name</td>
             <td>Years of Experience</td>
 	    <td>Email</td>
@@ -21,12 +23,10 @@ font-size: 20px;}
 	    <td>Availabilty</td>
 	    <td>Starting Hours</td>
 	    <td>Ending Hours</td>
-
          </thead>
          {% csrf_token %}
          {% for doctor in all_doctors %}
-            <tr>
-
+		<tr onclick="document.location.assign('select') what if">
                <td>{{ doctor.d_name }}</td>
 	       <td>{{ doctor.d_yoe }}</td>
 	       <td>{{ doctor.d_email }}</td>
@@ -39,5 +39,11 @@ font-size: 20px;}
          {% endfor %}
       </table>
 <button onclick="history.go(-1)">Back</button>
-   </body>
+<br></br><form method=POST action="">
+        {{ doctor_list }}
+    </form>
+<button onclick="select">Select Doctor to View Meetings</button>
+<br> {{Available}}
+
+ </body>
 </html>

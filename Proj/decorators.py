@@ -27,7 +27,6 @@ def doctor_required(function=None, redirect_field_name=REDIRECT_FIELD_NAME, logi
         login_url=login_url,
         redirect_field_name=redirect_field_name
     )
-    print(u.is_doctors)
     if function:
         return actual_decorator(function)
     return actual_decorator

@@ -3,7 +3,8 @@ from django.views.generic import CreateView
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from Proj.models import User, Doctors
-from .forms import PatientSignUpForm
+from Proj.decorators import patient_required
+from .forms import PatientSignUpForm,DoctorChoiceField
 from django.contrib.auth import login
 
 class SignUpView(CreateView):
@@ -20,9 +21,17 @@ class SignUpView(CreateView):
         return redirect('home')
 
 @login_required
+@patient_required
 def viewdoctors(request):
+    doctor_list = DoctorChoiceField
     context = {
-        'all_doctors':Doctors.objects.all()
+        'all_doctors':Doctors.objects.all(),
+	'doctor_list':doctor_list,
     }
     return render (request,'book.html',context)
-	
+
+@login_required
+@patient_required
+def selectdoctor(request,doc):
+   
+    return render (request,'book.html',context)

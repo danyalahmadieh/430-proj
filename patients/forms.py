@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.db import transaction
 
-from Proj.models import Patients, User
+from Proj.models import Patients, User, Doctors
 
 class PatientSignUpForm(UserCreationForm):
     p_name = forms.CharField(label= "Name:")
@@ -24,4 +24,10 @@ class PatientSignUpForm(UserCreationForm):
         patient.p_phone = self.cleaned_data.get('p_phone')
         patient.save()
         return user
-          
+
+class DoctorChoiceField(forms.Form):
+
+    doctors = forms.ModelChoiceField(
+        queryset=Doctors.objects.values_list("d_name", flat=True),
+        empty_label=None
+    )
