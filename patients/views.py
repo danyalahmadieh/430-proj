@@ -6,6 +6,7 @@ from Proj.models import User, Doctors
 from Proj.decorators import patient_required
 from .forms import PatientSignUpForm,DoctorChoiceField
 from django.contrib.auth import login
+from django.views.decorators.csrf import csrf_protect
 
 class SignUpView(CreateView):
     model = User
@@ -30,8 +31,23 @@ def viewdoctors(request):
     }
     return render (request,'book.html',context)
 
+
 @login_required
 @patient_required
-def selectdoctor(request,doc):
-   
+def selectdoctor(request):
+    if request.method == 'POST':
+        form = DoctorChoiceField(request.POST)
+    if form.is_valid():
+        date1=form.cleaned_data['dates']
+        doc=form.cleaned_data['doctor']
+        Times = []
+        dc = Doctors.objects.get(d_name=doc)
+        set1 = Meetings.objects.filter(m_date=date1,doctor=dc)
+        shours = [s.m_starthours for s in set1]
+        dsh= dc.d_starthours
+        deh = dc.d_endhours.subtract("00:30")
+        while (dsh<deh):
+            if dsh not in shours:
+                Times.append(dsh)
+            dsh = dsh.add("00:30")
     return render (request,'book.html',context)
